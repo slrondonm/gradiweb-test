@@ -1,3 +1,4 @@
+// Impport Main SCSS Styles
 import "./assets/scss/styles.scss";
 
 import { createApp } from "vue";
