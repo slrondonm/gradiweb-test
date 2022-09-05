@@ -1,0 +1,8 @@
+{
+  "name": "Gradiweb Test",
+  "description": "A barebones Node.js app using Vue 3",
+  "repository": "https://github.com/heroku/node-js-getting-started",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
+  "keywords": ["node", "vue", "heroku"],
+  "image": "heroku/nodejs"
+}
