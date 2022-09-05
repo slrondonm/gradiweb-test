@@ -1,12 +1,13 @@
 <template>
-  <header>
+  <header class="header">
     <nav
-      class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0"
+      class="navbar navbar-expand-lg navbar-light fixed-top mask-custom shadow-0 nav"
     >
       <div class="container">
         <a class="navbar-brand" href="#!"
-          ><span style="color: #5e9693">StoreShopp</span
-          ><span style="color: #fff">logist</span></a
+          ><span
+            ><img src="@/assets/logo-full.png" alt="Logo" height="40" /></span
+          ><span style="color: #7f7f7f"> test</span></a
         >
         <button
           class="navbar-toggler"
@@ -35,10 +36,16 @@
             </li>
           </ul>
           <ul class="navbar-nav d-flex flex-row">
-            <li class="nav-item me-3 me-lg-0">
-              <span v-if="cartItems > 0">{{ cartItems }}</span>
-              <a class="nav-link" href="#!" @click="$emit('cartClicked')">
+            <li v-if="cartItems > 0" class="nav-item me-3 me-lg-0">
+              <a
+                class="nav-link"
+                id="cart-item-dropdown"
+                href="#!"
+                @click="$emit('cartClicked')"
+                alt="Car"
+              >
                 <font-awesome-icon icon="fa-solid fa-shopping-cart" />
+                <span class="badge">{{ cartItems }}</span>
               </a>
             </li>
             <li class="nav-item me-3 me-lg-0">
@@ -76,11 +83,47 @@ export default {
       default: 0,
     },
   },
-  emits: ["cartClicked"],
+  emits: ["cartClicked", "openMenu"],
+  data() {
+    return {
+      visibleCart: false,
+    };
+  },
+  methods: {
+    showMenu(event) {
+      console.log(event);
+      this.visibleCart = true;
+      console.log("show menu");
+      this.$emit("openMenu");
+    },
+    closeMenu(event) {
+      console.log("close menu");
+      console.log(event);
+
+      this.visibleCart = false;
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: var(--header-height);
+  display: flex;
+  z-index: 120;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 /* Color of the links BEFORE scroll */
 .navbar-scroll .nav-link,
 .navbar-scroll .navbar-toggler-icon,
@@ -109,5 +152,18 @@ export default {
 .navbar-brand {
   font-size: 1.75rem;
   letter-spacing: 3px;
+}
+
+.badge {
+  background-color: #9f9f9f;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 </style>
